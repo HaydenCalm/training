@@ -48,23 +48,22 @@ body { font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif
 .tag { display:inline-block; padding:.15rem .6rem; border-radius:9999px; font-size:.75rem; font-weight:700; margin-right:.4rem; }
 .bg-shape { position: fixed; border-radius: 50%; filter: blur(80px); opacity: .35; z-index: -1; pointer-events: none; }
 
-/* Details / Summary: modern chevron + clickable hint */
+/* Details / Summary: FA chevron + clickable hint */
 details summary { position: relative; list-style: none; cursor: pointer; padding-left: 1.6rem; padding-right: 5.5rem; }
 details summary::-webkit-details-marker { display: none; }
 details summary::before {
-  content: "";
+  content: "\f054";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   position: absolute;
-  left: .1rem;
-  top: .52em;
-  width: .55rem;
-  height: .55rem;
-  border-right: 2.5px solid #0ea5e9;
-  border-bottom: 2.5px solid #0ea5e9;
-  border-radius: 0 0 3px 0;
-  transform: rotate(-45deg);
-  transition: transform .25s cubic-bezier(.4,0,.2,1), top .25s ease;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0ea5e9;
+  font-size: .8rem;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
 }
-details[open] summary::before { transform: rotate(45deg); top: .68em; }
+details[open] summary::before { content: "\f078"; }
 .summary-hint {
   position: absolute;
   right: 1rem;
@@ -124,7 +123,7 @@ details[open] .summary-hint::after { content: "点击收起"; }
 
 /* Details hint in dark mode */
 .dark .summary-hint { color: #94a3b8; background: rgba(148,163,184,0.18); }
-.dark details summary::before { border-color: #38bdf8; }
+.dark details summary::before { color: #38bdf8; }
 
 /* Progress track */
 .dark [class*="bg-slate-200"] { background-color: #334155 !important; }
