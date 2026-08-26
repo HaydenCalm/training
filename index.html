@@ -51,8 +51,7 @@ body { font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif
 /* Details / Summary clickable hints */
 details summary { position: relative; list-style-position: outside; cursor: pointer; padding-right: 5.2rem; }
 details summary::-webkit-details-marker { font-size: 1.1em; }
-details summary::after {
-  content: "点击展开";
+.summary-hint {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -66,7 +65,8 @@ details summary::after {
   pointer-events: none;
   white-space: nowrap;
 }
-details[open] summary::after { content: "点击收起"; }
+.summary-hint::after { content: "点击展开"; }
+details[open] .summary-hint::after { content: "点击收起"; }
 
 /* Dark mode overrides */
 .dark { background-color: #0f172a !important; }
@@ -109,7 +109,7 @@ details[open] summary::after { content: "点击收起"; }
 .dark .table-neon td { color: #cbd5e1; }
 
 /* Details hint in dark mode */
-.dark details summary::after { color: #94a3b8; background: rgba(148,163,184,0.18); }
+.dark .summary-hint { color: #94a3b8; background: rgba(148,163,184,0.18); }
 
 /* Progress track */
 .dark [class*="bg-slate-200"] { background-color: #334155 !important; }
@@ -335,9 +335,9 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-7 gradient-border card-glow">
 <h3 class="anime-font mb-4 text-lg"><i class="fa-solid fa-briefcase mr-2"></i>白班/住家/钟点工挖需表</h3>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">钟点工必问</summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>中餐/晚餐？做几人餐？是否做卫生、卫生面积？是否买菜？是否洗碗？特殊要求？小区？预算？</p></div></details>
-<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">白班保姆必问</summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>主要工作内容、做几人餐、卫生面积、上班时间（9小时）、要求、小区、预算。</p></div></details>
-<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">住家保姆必问</summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>主要工作内容、做几人餐、卫生面积、阿姨是否有自己房间、要求、小区、预算。</p></div></details>
+<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">钟点工必问<span class="summary-hint"></span></summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>中餐/晚餐？做几人餐？是否做卫生、卫生面积？是否买菜？是否洗碗？特殊要求？小区？预算？</p></div></details>
+<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">白班保姆必问<span class="summary-hint"></span></summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>主要工作内容、做几人餐、卫生面积、上班时间（9小时）、要求、小区、预算。</p></div></details>
+<details class="bg-slate-50 rounded-lg p-3"><summary class="font-bold text-slate-800 cursor-pointer">住家保姆必问<span class="summary-hint"></span></summary><div class="text-sm text-slate-700 mt-2 space-y-1"><p>主要工作内容、做几人餐、卫生面积、阿姨是否有自己房间、要求、小区、预算。</p></div></details>
 </div>
 </div>
 </div>
@@ -442,11 +442,11 @@ details[open] summary::after { content: "点击收起"; }
 <div class="mt-6 bg-white/95 rounded-2xl p-6 gradient-border card-glow">
 <h3 class="anime-font mb-4 text-lg"><i class="fa-solid fa-comments-dollar mr-2"></i>常见异议处理参考话术</h3>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨工资太高了</summary><div class="p-4 pt-0 text-sm text-slate-700">我匹配的阿姨都是按您需求精准筛选、评价较高的，薪资比市场低阿姨稳定性会不好，影响工作效率，您看是否再提高点预算？</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">服务费太贵了</summary><div class="p-4 pt-0 text-sm text-slate-700">58到家服务费在行业里性价比高，提供长期服务、随心换、阿姨带保险上户、安全背调，算下来每月XXX元，让您用得放心。</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">这阿姨能试工吗</summary><div class="p-4 pt-0 text-sm text-slate-700">可以的，签定合同以后每一天都是试工期。我们有随心换服务，不合适可无限次免费更换，阿姨带保上户，人伤物损都有百万理赔。</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">我再考虑考虑 / 跟家人商量</summary><div class="p-4 pt-0 text-sm text-slate-700">现在找阿姨高峰期，您看中的阿姨很抢手。您主要和家人商量哪方面？若您做不了主，可现场连线家人远程面试，合适咱们当场定。</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">我再看看别的阿姨</summary><div class="p-4 pt-0 text-sm text-slate-700">这个阿姨综合能力不错，符合您家需求。优秀阿姨抢手，现在不定会被其他经纪人约走。您可先定下来，不合适我们有随心换无限次更换。</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨工资太高了<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">我匹配的阿姨都是按您需求精准筛选、评价较高的，薪资比市场低阿姨稳定性会不好，影响工作效率，您看是否再提高点预算？</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">服务费太贵了<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">58到家服务费在行业里性价比高，提供长期服务、随心换、阿姨带保险上户、安全背调，算下来每月XXX元，让您用得放心。</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">这阿姨能试工吗<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">可以的，签定合同以后每一天都是试工期。我们有随心换服务，不合适可无限次免费更换，阿姨带保上户，人伤物损都有百万理赔。</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">我再考虑考虑 / 跟家人商量<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">现在找阿姨高峰期，您看中的阿姨很抢手。您主要和家人商量哪方面？若您做不了主，可现场连线家人远程面试，合适咱们当场定。</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">我再看看别的阿姨<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">这个阿姨综合能力不错，符合您家需求。优秀阿姨抢手，现在不定会被其他经纪人约走。您可先定下来，不合适我们有随心换无限次更换。</div></details>
 </div>
 </div>
 
@@ -456,16 +456,16 @@ details[open] summary::after { content: "点击收起"; }
 <div>
 <div class="text-slate-800 font-bold mb-2">视频面试</div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户没面上阿姨，直接退出面试间</summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>先安抚阿姨：</b>「阿姨，客户现在有点急事要处理一下先退出了，之后再约时间我提前联系您哈！」</p><p><b>再电话问客户原因、二次约面：</b>「您没相中阿姨具体是什么原因呢？我这边还有另一位阿姨，看您再X点合适，咱再面一下？」</p></div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户/阿姨来电话被迫退出</summary><div class="p-4 pt-0 text-sm text-slate-700">「您是进来电话了吗？我和阿姨在面试间等您，您电话结束后直接再进入面试间就可以了。」</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">面试网络不好、卡顿</summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>预防：</b>面试前与客户/阿姨双向沟通时先测试网络信号。</p><p>「您这边网络有点卡，退出去找个网络好点的地方重新进一下，实在不行换个手机微信再进一下哈。」</p></div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户没面上阿姨，直接退出面试间<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>先安抚阿姨：</b>「阿姨，客户现在有点急事要处理一下先退出了，之后再约时间我提前联系您哈！」</p><p><b>再电话问客户原因、二次约面：</b>「您没相中阿姨具体是什么原因呢？我这边还有另一位阿姨，看您再X点合适，咱再面一下？」</p></div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户/阿姨来电话被迫退出<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">「您是进来电话了吗？我和阿姨在面试间等您，您电话结束后直接再进入面试间就可以了。」</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">面试网络不好、卡顿<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>预防：</b>面试前与客户/阿姨双向沟通时先测试网络信号。</p><p>「您这边网络有点卡，退出去找个网络好点的地方重新进一下，实在不行换个手机微信再进一下哈。」</p></div></details>
 </div>
 </div>
 <div>
 <div class="text-slate-800 font-bold mb-2">到店面试</div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户问：你们门店还有其他阿姨吗？</summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2">客户想多面几个对比，<b>经纪人把控好节奏</b>：</p><p>「咱还有一位XX阿姨在外面等着，稍等我叫一下她，咱也跟XX阿姨聊聊。」（同时让已面试阿姨离开面试间回避）</p></div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户问很多偏离面试的问题</summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2">经纪人要<b>及时把话题拉回来</b>：</p><p>「咱们主要还是和阿姨沟通您这边的具体需求哈，专业问题阿姨可能回答得不全面，这些我来给您解答。」</p></div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户问：你们门店还有其他阿姨吗？<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2">客户想多面几个对比，<b>经纪人把控好节奏</b>：</p><p>「咱还有一位XX阿姨在外面等着，稍等我叫一下她，咱也跟XX阿姨聊聊。」（同时让已面试阿姨离开面试间回避）</p></div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">客户问很多偏离面试的问题<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2">经纪人要<b>及时把话题拉回来</b>：</p><p>「咱们主要还是和阿姨沟通您这边的具体需求哈，专业问题阿姨可能回答得不全面，这些我来给您解答。」</p></div></details>
 </div>
 </div>
 </div>
@@ -477,16 +477,16 @@ details[open] summary::after { content: "点击收起"; }
 <div>
 <div class="text-slate-800 font-bold mb-2">客户端</div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">对阿姨不满意</summary><div class="p-4 pt-0 text-sm text-slate-700">「姐/哥，我这还有个赵阿姨可能更适合咱们家，她在XX方面（按一面反馈，突出第二个阿姨的优势）会更有经验，更能帮你减轻负担，你看一会时间方便不，咱们再面试下？」</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">要跟家里人商量</summary><div class="p-4 pt-0 text-sm text-slate-700">「今天面试的张阿姨在XX（贴合需求的优势）确实很有经验，她属于会做不会说的那种。您跟家里人主要商量哪一块？要不咱们10分钟后线上再拉个视频面试，和家里人一起看下，这样更有参考性？」</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">费用接受不了（两步走）</summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>第一步·申请折扣：</b>「阿姨的档期确实不容易碰，这样吧我跟我们经理再争取争取，看能不能给咱打个折，但折扣力度应该不会太大，以前都没这种先例，有结果我第一时间告诉您。」</p><p><b>第二天·锁单：</b>「我昨天跟你申请折扣，经理说了最多只能打个九五折，也只有这2天签约才有，我也是实在没办法。」</p></div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">对阿姨不满意<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">「姐/哥，我这还有个赵阿姨可能更适合咱们家，她在XX方面（按一面反馈，突出第二个阿姨的优势）会更有经验，更能帮你减轻负担，你看一会时间方便不，咱们再面试下？」</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">要跟家里人商量<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">「今天面试的张阿姨在XX（贴合需求的优势）确实很有经验，她属于会做不会说的那种。您跟家里人主要商量哪一块？要不咱们10分钟后线上再拉个视频面试，和家里人一起看下，这样更有参考性？」</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">费用接受不了（两步走）<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700"><p class="mb-2"><b>第一步·申请折扣：</b>「阿姨的档期确实不容易碰，这样吧我跟我们经理再争取争取，看能不能给咱打个折，但折扣力度应该不会太大，以前都没这种先例，有结果我第一时间告诉您。」</p><p><b>第二天·锁单：</b>「我昨天跟你申请折扣，经理说了最多只能打个九五折，也只有这2天签约才有，我也是实在没办法。」</p></div></details>
 </div>
 </div>
 <div>
 <div class="text-slate-800 font-bold mb-2">阿姨端</div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">觉得客户要求高</summary><div class="p-4 pt-0 text-sm text-slate-700">「特别理解你的感受，这个客户就是嘴上说，真到家里干活了，只要咱们尽心尽力，客户其实挺好说话的。他家之前的阿姨上户一年多相处得挺好。你明天就能上户，明天就挣工资，不上户的每天都是损失啊。」</div></details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">对工资不满意</summary><div class="p-4 pt-0 text-sm text-slate-700">「咱们在XX（阿姨短板）的经验确实还不足，这个活熟能生巧。先上户一个月XXXX钱，合到每天XX钱，现在不上户，再等几天就是损失。上户就能攒经验，服务好了工资还有机会再谈，到时候我帮你跟客户谈，我建议你先上户。」</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">觉得客户要求高<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">「特别理解你的感受，这个客户就是嘴上说，真到家里干活了，只要咱们尽心尽力，客户其实挺好说话的。他家之前的阿姨上户一年多相处得挺好。你明天就能上户，明天就挣工资，不上户的每天都是损失啊。」</div></details>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50 text-sm">对工资不满意<span class="summary-hint"></span></summary><div class="p-4 pt-0 text-sm text-slate-700">「咱们在XX（阿姨短板）的经验确实还不足，这个活熟能生巧。先上户一个月XXXX钱，合到每天XX钱，现在不上户，再等几天就是损失。上户就能攒经验，服务好了工资还有机会再谈，到时候我帮你跟客户谈，我建议你先上户。」</div></details>
 </div>
 </div>
 </div>
@@ -612,37 +612,37 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-black">1</span><h3 class="anime-font text-base">服务费贵问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">核心问题：你们公司服务费太贵了</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">核心问题：你们公司服务费太贵了<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>强调58到家服务和保障优势；告知服务费构成；根据客户关注点选择性介绍；将年服务费拆解为月服务费×12。</p>
 <p><span class="text-green-500 font-bold">话术：</span>先生/女士，58到家为让您安心放心，提供售前售后9大保障：①公安联网背景调查，有犯罪/征信问题一律拉黑；②权威体检机构9项报告，非“健康证”；③阿姨必须培训合格上岗；④一次费用无隐形消费，合同期内无限次免费换阿姨；⑤签约赠送200万平安保险；⑥N对1售后群随时处理；⑦服务质量管理定期回访；⑧签约/面试前58官方系统认证阿姨信息；⑨大数据匹配+人工精筛+线上线下推荐。年服务费折算下来每月仅几百元，每天十几块钱。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨只接受了1-2天培训就上岗，和社会阿姨没区别？</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨只接受了1-2天培训就上岗，和社会阿姨没区别？<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>强调培训合格才上岗；社会阿姨缺少培训、背调、体检。</p>
 <p><span class="text-green-500 font-bold">话术：</span>您的顾虑有一定道理，但咱们阿姨面试前必须培训合格才能上岗。社会上阿姨可能既没培训也没背调体检，相比之下安全放心最重要，您说对吧？</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">面试完谈到签约，客户因服务费贵犹豫不签约</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">面试完谈到签约，客户因服务费贵犹豫不签约<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>确定客户犹豫根本原因，解决异议。</p>
 <p><span class="text-green-500 font-bold">话术：</span>方便问下，您是觉得阿姨哪里不合适，还是对公司服务不满意？快速判定是服务费贵、购买能力不足，还是不是决策人。若不是决策人，可现场电话/视频沟通+再次逼单。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">其他公司几百块，咱们四五千，为什么贵这么多？</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">其他公司几百块，咱们四五千，为什么贵这么多？<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>强调9大服务保障；公司服务保障对比。</p>
 <p><span class="text-green-500 font-bold">话术：</span>非常理解您，选安全放心阿姨更重要。苹果手机贵还那么多人买，不就是物超所值嘛。其他公司300、500服务费只管3个月换阿姨，其他不管。真出问题比如传染病或意外，这点钱根本不够。我们有专属顾问、售后、招商、运营同事一起服务；淘汰的、背调体检不合格的阿姨都流向小家政公司了。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">服务保障不认可，觉得体检背调自己也能做</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">服务保障不认可，觉得体检背调自己也能做<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>背调不简单，网站搜索不靠谱；9大保障不止体检背调。</p>
 <p><span class="text-green-500 font-bold">话术：</span>您说的我认同，但做完体检、网上搜一下只能保证身体健康，实际不清楚犯罪前科、信用不良。我们是全国唯一跟公安机关联网的平台，阿姨上岗前经过身份认证、背景调查、健康认证。同时有培训、保险、换阿姨、售后等保障。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户对阿姨技能、态度期待过高</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户对阿姨技能、态度期待过高<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>阿姨需磨合，降低期待；可无限次数更换。</p>
 <p><span class="text-green-500 font-bold">话术：</span>无论和哪个阿姨相处都需要磨合期，再好的阿姨也会有这种情况。您多沟通，阿姨才能干得让您满意。合同期内觉得不合适可不限次数免费更换。</p>
@@ -654,16 +654,16 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center font-black">2</span><h3 class="anime-font text-base">优惠问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">你们公司服务费能给打个折吗？</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">你们公司服务费能给打个折吗？<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>价格全国统一，系统核算；强调安全健康最重要；预设阿姨上户好场景。</p><p><span class="text-green-500 font-bold">话术：</span>先生/女士，定价和合同全国统一，系统线上核算，谁也改不了。找阿姨是为了省心不是省钱，阿姨工资一年大几万，服务费是小部分，阿姨踏实稳定、人品好才最重要。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">朋友有折扣，我也要折扣，没有就不签约</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">朋友有折扣，我也要折扣，没有就不签约<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>朋友折扣是限时活动已结束；强调推荐客户专属服务。</p><p><span class="text-green-500 font-bold">话术：</span>您朋友签单时正好赶上XX活动，一年一次不能单独申请。朋友推荐您肯定是因为阿姨用着不错，不是优惠。您作为推荐客户，我会重点跟进服务。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨相中了，就想让公司给点优惠</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨相中了，就想让公司给点优惠<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>引导客户签2年单，两年单有优惠。</p><p><span class="text-green-500 font-bold">话术：</span>先生/女士，1年服务费不打折。若您长期用，签2年单加起来才XXXX，相当于8折。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">朋友当时签的服务费低，想同比例签约</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">朋友当时签的服务费低，想同比例签约<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>价格全国统一；服务费每年可能调整。</p><p><span class="text-green-500 font-bold">话术：</span>定价全国统一，系统核算无法改。朋友签约是X年前，市场行情变化，服务费每年可能调整。</p></div>
 </details>
 </div>
@@ -672,10 +672,10 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-black">3</span><h3 class="anime-font text-base">试工问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">可以先试用一下阿姨吗？</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">可以先试用一下阿姨吗？<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>试用需建立在签约基础上，才有法律和保险保障。</p><p><span class="text-green-500 font-bold">话术：</span>阿姨可以试用，签约后整个服务期都是试用期。不满意可免费更换，但试用需先签合同，这样才有法律和保险保障。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">试用期间出问题客户承担责任，不试用就不签约</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">试用期间出问题客户承担责任，不试用就不签约<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>强调签约后保险才生效；举反面案例；公司红线。</p><p><span class="text-green-500 font-bold">话术：</span>理解您。但只有签了合同，服务才有法律保障，还有200多万平安保险。之前有的公司没签约试工，阿姨做饭烫伤胳膊，客户花了一万多。必须签约后才能试工是公司统一规定，安全无小事。我们后台几万阿姨，不合适随时调换。</p></div>
 </details>
 </div>
@@ -684,13 +684,13 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-black">4</span><h3 class="anime-font text-base">薪资问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户认为阿姨工资高，预算与期望差距大</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户认为阿姨工资高，预算与期望差距大<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>工资由市场决定；了解是否对比过其他公司；工资逐年递增；从订单工作量解释；引导更改阿姨类型。</p>
 <p><span class="text-green-500 font-bold">话术：</span>阿姨工资不是公司定的，是市场决定的，价格透明，不会有既便宜又优秀的阿姨。我们阿姨筛选严格、专业全面，用着放心。如果订单工作量不大，可改白班或小时工，预算更合适。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户给的工资低于阿姨预期 / 阿姨要价虚高</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户给的工资低于阿姨预期 / 阿姨要价虚高<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>判断阿姨值不值；不值则降阿姨预期；优秀则强调优势促签约；一味压工资有售后隐患。</p>
 <p><span class="text-green-500 font-bold">话术（阿姨优秀）：</span>这个阿姨经验丰富、干净利索，客户评价高，工资真不高。市场价透明，好阿姨抢手，您不签别人就签了。找阿姨为省心，建议尽快定。</p>
@@ -703,13 +703,13 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-violet-500 text-white flex items-center justify-center font-black">5</span><h3 class="anime-font text-base">邀约问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户线上仅咨询问完价格后，很难邀约面试</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户线上仅咨询问完价格后，很难邀约面试<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>电话里不要说太多；服务费模糊处理；引导见面/视频面试；多次邀约。</p>
 <p><span class="text-green-500 font-bold">话术：</span>您的需求我了解了，我手头有两个合适阿姨，您看下午3点视频面试？客户说没时间→晚上几点下班？再拒绝→明天上午10点可以吗？客户问服务费：服务费根据阿姨和合同时长定，先确定阿姨。客户说太远/出差：家里找阿姨是大事，来公司看看靠谱，也可视频或上门面试。</p>
 </div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">线索下地面后首次邀约失败，如何持续跟进？</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">线索下地面后首次邀约失败，如何持续跟进？<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>复盘录音找问题；首通失败至少每天跟进一次；以主管/金牌经纪人身份回访，用群面会等噱头再邀约。</p><p><span class="text-green-500 font-bold">话术：</span>XX先生您好，我是之前同事的主管/58到家金牌经纪人，回访下您没过来选阿姨的原因。周六我们举办大型群面会，到场五十多位阿姨，您早上9点来公司挑选，我加您微信发地址。</p></div>
 </details>
 </div>
@@ -718,13 +718,13 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-black">6</span><h3 class="anime-font text-base">阿姨相关问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨对客户需求有异议，犹豫是否接单</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨对客户需求有异议，犹豫是否接单<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>不想接不强求；犹豫则了解顾虑点，双向沟通，强调订单优势。</p><p><span class="text-green-500 font-bold">话术：</span>阿姨您直说，这是双向选择。若嫌工资低：这工资不低了，活儿轻松/距离近/客户人好，您接了马上赚钱，继续等未必有合适单。若对工作内容有异议：哪有十全十美的活，这个单算不错的，您现在接现在就挣钱。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨擅自离岗，导致退费和特殊售后</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨擅自离岗，导致退费和特殊售后<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>签单前后灌输不可擅自离岗及处罚；积累阿姨资源；了解离岗原因。</p><p><span class="text-green-500 font-bold">话术：</span>阿姨，合同签了好好干，有问题第一时间找我，不要和客户产生矛盾，更不要自行下户。无故下户被投诉系统直接拉黑，再也没法接单。您代表的是整个58到家，不能让信任我们的客户失望。</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨签单后跳单/不上户/隐瞒已面订单</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">阿姨签单后跳单/不上户/隐瞒已面订单<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>强调制度和拉黑机制；严禁带已上户阿姨面试；签单后尽快送走。</p><p><span class="text-green-500 font-bold">话术：</span>公司规定跳单直接拉黑。您真不为以后打算吗？觉得跳另一个单能干一辈子？不确定就踏实先干着，有问题提前沟通。</p></div>
 </details>
 </div>
@@ -733,7 +733,7 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center font-black">7</span><h3 class="anime-font text-base">客户不着急用人</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户说过段时间再找，短期无法签约</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户说过段时间再找，短期无法签约<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>确定是否托词，找担忧点；持续邀约推荐优质阿姨；告知资源紧缺；若态度坚决，设立购买标准防竞品。</p>
 <p><span class="text-green-500 font-bold">话术：</span>现在好阿姨资源紧缺，建议提前选好。临时找未必合适，且阿姨上户有磨合期。我手头有两个合适阿姨，您明天方便视频面试吗？</p>
@@ -746,7 +746,7 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-black">8</span><h3 class="anime-font text-base">决策/逼单问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户说考虑考虑 / 和家人商量</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户说考虑考虑 / 和家人商量<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700 space-y-2">
 <p><span class="text-amber-500 font-bold">思路：</span>刨根问底找成交瓶颈；面试全程多次试探；首通核实决策人；非决策人可远程视频/上门；回家商量后2小时内跟进。</p>
 <p><span class="text-green-500 font-bold">话术：</span>您考虑什么呢？/ 您和家里人商量哪方面？现在是找阿姨高峰期，您看中的阿姨很抢手，一会儿其他客户还要面试。您现在不定，阿姨很可能被签走。能找到一个合适的阿姨不容易，这是合同您看一下。</p>
@@ -760,10 +760,10 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-6 gradient-border card-glow mb-6">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-black">9</span><h3 class="anime-font text-base">个性化需求问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户对形象、地域等特殊要求</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">客户对形象、地域等特殊要求<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>了解根本原因；专业角度引导关注工作能力；发简历放大优势；先邀约面试，不在电话里强行引导。</p><p><span class="text-green-500 font-bold">话术：</span>您提的要求我理解，但找阿姨不是选美，也没必要纠结区域。关键是工作经验和人品。我尽量按您要求找，明天您和阿姨面试聊聊？</p></div>
 </details>
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">引导后客户仍不改需求，匹配难</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">引导后客户仍不改需求，匹配难<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>告知双向选择；说明市场现状；必要时安排C类阿姨对比面试；持续推荐让客户看到你的努力。</p><p><span class="text-green-500 font-bold">话术：</span>我会尽力匹配，但阿姨群体很多是农村进城打工，高学历年轻的少。完全按这些需求找很难，而且58到家线上5万阿姨，您在这找不到其他地方也找不到。我帮您找两个优秀阿姨，明天面试聊聊？</p></div>
 </details>
 </div>
@@ -772,7 +772,7 @@ details[open] summary::after { content: "点击收起"; }
 <div class="bg-white/95 rounded-2xl p-7 gradient-border card-glow">
 <div class="flex items-center gap-3 mb-4"><span class="w-10 h-10 rounded-full bg-violet-500 text-white flex items-center justify-center font-black">10</span><h3 class="anime-font text-base">预付工资问题</h3></div>
 <div class="space-y-3">
-<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">还没来上户就把月工资交给公司，无法接受</summary>
+<details class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"><summary class="p-4 font-bold text-slate-800 cursor-pointer hover:bg-slate-50">还没来上户就把月工资交给公司，无法接受<span class="summary-hint"></span></summary>
 <div class="p-4 pt-0 text-sm text-slate-700"><p><span class="text-amber-500 font-bold">思路：</span>了解拒绝原因；说明预付是对客户的保障和对阿姨的约束；工资支付至平台安全。</p><p><span class="text-green-500 font-bold">话术：</span>理解您的顾虑。阿姨上门第一个月是磨合期，预付工资主要是约束阿姨和保障您。万一不合适公司出面解决，避免您和阿姨当面纠纷。钱直接支付到平台，不经我手，阿姨满岗且您确认后才发放，非常安全。</p></div>
 </details>
 </div>
